@@ -89,7 +89,7 @@ class RegisterController extends Controller
         return User::create([
             'hostel_id' => $hostel->id,
             'role'      => 2,
-            'username'  => $data['username'],
+            'username'  => str()->slug($data['username']),
             'name'      => $data['name'],
             'email'     => $data['email'],
             'password'  => $data['password'],
@@ -147,6 +147,6 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        //
+        session()->flash('success','Your registration was successful');
     }
 }

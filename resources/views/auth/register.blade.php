@@ -72,3 +72,22 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#username').on('input', function() {
+                var title = $(this).val();
+                var title = generateSlug(title);
+                $(this).val(title);
+            });
+
+            function generateSlug(text) {
+                return text
+                    .toLowerCase()
+                    .replace(/[^\w ]+/g, '') // Remove special characters
+                    .replace(/ +/g, '-');   // Replace spaces with hyphens
+            }
+        });
+    </script>
+@endpush

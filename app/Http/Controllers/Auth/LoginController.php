@@ -152,7 +152,7 @@ class LoginController extends Controller
                     ? new JsonResponse([], 204)
                     : redirect()->intended($this->redirectPath());
     }
-
+ 
     /**
      * The user has been authenticated.
      *

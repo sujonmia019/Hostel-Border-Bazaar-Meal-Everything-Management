@@ -14,11 +14,11 @@
             <div class="col-6">
                 <div class="dropdown top-bar-right text-end">
                     <button class="btn btn-none dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="{{ auth()->user()->image ? storage_url(auth()->user()->image) : asset('img/man.png') }}" alt="">
+                      <img src="{{ user_profile() }}" alt="">
                     </button>
                     <div class="dropdown-menu">
                       <div class="d-flex align-items-center gap-2 px-2">
-                        <div><img src="{{ auth()->user()->image ? storage_url(auth()->user()->image) : asset('img/man.png') }}" alt=""></div>
+                        <div><img src="{{ user_profile() }}" alt=""></div>
                         <div>
                           <h6 class="mb-0">{{ Auth::user()->name ?? '' }}</h6>
                           <span class="mb-0">{{ Auth::user()->email ?? '' }}</span>
@@ -45,13 +45,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') || request()->is('list/layout') ? 'active' : '' }}" href="{{ url('/') }}"> <i class="fa-solid fa-list"></i> Task List</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}"> <i class="fa-solid fa-home fa-sm"></i> Dashboard</a>
                 </li>
-                @if(!request()->is('list/layout'))
                 <li class="nav-item">
-                    <button type="button" class="nav-link" onclick="showFormModal('New Task','Save')"> <i class="fa-solid fa-plus fa-sm"></i> Add Task</button>
+                    <a class="nav-link {{ request()->is(auth()->user()->username.'/users') ? 'active' : '' }}" href="{{ route('app.hostel-admin.users.index', auth()->user()->username) }}"> <i class="fas fa-users fa-sm"></i> Users</a>
                 </li>
-                @endif
             </ul>
         </div>
     </div>

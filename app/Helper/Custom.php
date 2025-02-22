@@ -33,8 +33,40 @@ if(!function_exists('dateTimeFormat')){
     }
 }
 
-if(!function_exists('storage_url')){
-    function storage_url($path){
+if(!function_exists('file_path')){
+    function file_path($path){
         return Storage::disk('public')->url($path);
+    }
+}
+
+/**
+ * User profile image
+ *
+ * @return string
+ */
+if(!function_exists('user_profile')){
+    function user_profile(){
+        return auth()->user()->image ? file_path(auth()->user()->image) : "https://ui-avatars.com/api/?name=".auth()->user()->name."&size=64&rounded=true&color=fff&background=F97C4F";
+    }
+}
+
+if(!function_exists('user_image')){
+    function user_image($path, $name){
+        $imagePath =  $path ? file_path($path) : "https://ui-avatars.com/api/?name=".$name."&size=40&color=fff&background=F97C4F";
+        return "<img src='".$imagePath."' alt='".$name."' style='width: 40px; height: 40px;'>";
+    }
+}
+
+if (!function_exists('table_image')) {
+    function table_image($path,$name = null){
+        return $path ? "<img src='".file_path($path)."' alt='".$name."' style='width: 35px; height: 40px;'/>"
+        : "<img src='".asset('/')."img/default.svg' alt='Default Image' style='width: 35px; height: 40px;'/>";
+    }
+}
+
+if (!function_exists('change_status')) {
+    function change_status(int $id,int $status,string $name = null){
+        return $status == 1 ? '<span class="badge rounded-0 bg-success change_status" data-id="' . $id . '" data-name="' . $name . '" data-status="2" style="cursor:pointer;">Active</span>' :
+        '<span class="badge rounded-0 bg-danger change_status" data-id="' . $id . '" data-name="' . $name . '" data-status="1" style="cursor:pointer;">Inactive</span>';
     }
 }
