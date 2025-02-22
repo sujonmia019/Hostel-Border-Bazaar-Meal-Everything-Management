@@ -282,3 +282,12 @@ h2#swal2-title {
 div:where(.swal2-container) div:where(.swal2-popup) {
     width: 28em !important;
 }
+label {
+    font-size: 13px;
+    color: #404040;
+}
+.required::after{
+    content: "*";
+    color: red;
+    font-size: 14px;
+}
