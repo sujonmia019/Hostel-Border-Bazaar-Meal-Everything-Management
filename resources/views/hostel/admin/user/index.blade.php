@@ -83,7 +83,7 @@
                 "<'row mt-2 align-items-center'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 text-end'p>>",
             buttons: [
                 {
-                    text: '+ Add New',
+                    text: '+ Add User',
                     className: 'btn btn-sm btn-primary add_user'
                 }
             ]
@@ -95,8 +95,24 @@
         });
 
         $(document).on('click','.add_user',function(){
-            window.location.href = "{{ route('app.hostel-admin.users.create', auth()->user()->username) }}";
+            window.location.href = "{{ route('app.hostel-admin.users.create', $username) }}";
         });
 
+        // delete
+        $(document).on('click','.delete_data',function(){
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var url = "{{ route('app.hostel-admin.users.delete',$username) }}";
+            let row = table.row($(this).parent('tr'));
+            delete_data(id, url, row, name);
+        });
+
+        $(document).on('click', '.change_status', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var status = $(this).data('status');
+            var url = "{{ route('app.hostel-admin.users.status',$username) }}"
+            change_status(id, status, name, url);
+        });
     </script>
 @endpush

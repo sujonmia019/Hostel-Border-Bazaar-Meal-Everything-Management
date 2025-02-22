@@ -30,35 +30,17 @@
                     </div>
                     <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="row g-3 justify-content-center">
-                            <div class="col-md-12 mt-3">
-                                <x-input label="Hostel Name" name="hostel_name" required="required" value="{{ old('hostel_name') }}"/>
-                            </div>
-                            <div class="col-md-12 mt-2">
-                                <x-input label="Hostel Address" name="hostel_address" required="required" value="{{ old('hostel_address') }}"/>
-                            </div>
-                            <div class="col-md-12 mt-2">
-                                <x-input type="file" label="Hostel Logo" name="hostel_logo"/>
-                            </div>
-                            <div class="col-md-12 mt-2">
-                                <x-input label="Name" name="name" value="{{ old('name') }}" required="required" />
-                            </div>
-                            <div class="col-md-12 mt-2">
-                                <x-input label="Username" name="username" value="{{ old('username') }}" required="required" />
-                            </div>
-                            <div class="col-md-12 mt-2">
-                                <x-input type="email" label="Email" name="email" value="{{ old('email') }}" required="required" />
-                            </div>
-                            <div class="col-md-12 mt-2">
-                                <x-input type="password" label="Password" name="password" required="required" />
-                            </div>
-                            <div class="col-md-12 mt-2">
-                                <x-input type="password" label="Confirm Password" name="password_confirmation" required="required" />
-                            </div>
-                            <div class="col-md-12 mt-3">
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-sm">Register</button>
-                                </div>
+                        <div class="row justify-content-center">
+                            <x-input label="Hostel Name" name="hostel_name" required="required" value="{{ old('hostel_name') }}"/>
+                            <x-input label="Hostel Address" name="hostel_address" required="required" value="{{ old('hostel_address') }}"/>
+                            <x-input type="file" label="Hostel Logo" name="hostel_logo"/>
+                            <x-input label="Name" name="name" value="{{ old('name') }}" required="required" />
+                            <x-input label="Username" name="username" value="{{ old('username') }}" required="required" />
+                            <x-input type="email" label="Email" name="email" value="{{ old('email') }}" required="required" />
+                            <x-input type="password" label="Password" name="password" required="required" />
+                            <x-input type="password" label="Confirm Password" name="password_confirmation" required="required" />
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-sm">Register</button>
                             </div>
                         </div>
                     </form>

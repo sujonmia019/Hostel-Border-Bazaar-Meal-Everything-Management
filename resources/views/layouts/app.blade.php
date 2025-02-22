@@ -97,9 +97,12 @@
     <script src="{{ asset('/') }}js/dataTables.bootstrap5.js"></script>
     <script src="{{ asset('/') }}js/dataTables.responsive.js"></script>
     <script src="{{ asset('/') }}js/responsive.bootstrap5.js"></script>
+    <script src="{{ asset('/') }}js/dataTables.buttons.min.js"></script>
     <script src="{{ asset('/') }}js/moment.min.js"></script>
     <script src="{{ asset('/') }}js/daterangepicker.min.js"></script>
     <script src="{{ asset('/') }}js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('/') }}js/custom.js"></script>
     <script>
         var _token = "{{ csrf_token() }}";
 

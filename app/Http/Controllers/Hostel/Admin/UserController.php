@@ -42,19 +42,20 @@ class UserController extends Controller
                 ->make(true);
         }
 
-        $this->setPageData('Users');
+        $this->setPageData('User List');
         return view('hostel.admin.user.index');
     }
 
     public function create($username){
-
+        $this->setPageData('Create User');
+        return view('hostel.admin.user.store-or-update');
     }
 
     public function storeOrUpdate(Request $request, string $username){
 
     }
 
-    public function edit(int $id, string $username){
+    public function edit(string $username, int $id){
 
     }
 

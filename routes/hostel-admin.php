@@ -17,6 +17,7 @@ Route::name('app.hostel-admin.')->middleware('auth')->group(function(){
         Route::post('store', [UserController::class, 'store'])->name('store');
         Route::get('{id}/edit', [UserController::class, 'edit'])->name('edit');
         Route::post('delete', [UserController::class, 'delete'])->name('delete');
+        Route::post('status', [UserController::class, 'changeStatus'])->name('status');
     });
 
     // Profile Route
