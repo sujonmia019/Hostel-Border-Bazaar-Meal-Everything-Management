@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('hostel_id')->constrained('hostels');
             $table->enum('role',[1,2,3])->default(3)->comment('1 = super-admin, 2 = hostel-admin, 3 = border');
             $table->string('name');
-            $table->string('username', 20)->unique();
+            $table->string('username', 20);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
