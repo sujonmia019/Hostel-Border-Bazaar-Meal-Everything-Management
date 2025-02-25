@@ -4,11 +4,24 @@ namespace App\Http\Controllers\Hostel\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use App\Services\UserService;
+use App\Traits\ResponseMessage;
+use App\Traits\UploadAble;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
+    use ResponseMessage;
+
+    protected $user;
+
+    public function __construct(UserService $userService)
+    {
+        $this->user = $userService;
+    }
+
     public function index(Request $request, string $username){
         if($request->ajax()){
             $getData = User::orderBy('id','DESC');
@@ -51,8 +64,11 @@ class UserController extends Controller
         return view('hostel.admin.user.store-or-update');
     }
 
-    public function storeOrUpdate(Request $request, string $username){
-
+    public function storeOrUpdate(UserRequest $request, string $username){
+        if($request->ajax()){
+            $result = $this->user->createOrUpdate($request);
+            return $this->store_message($result, $request->update_id);
+        }
     }
 
     public function edit(string $username, int $id){

@@ -1,4 +1,4 @@
-<div class="{{ $groupClass ?? '' }}">
+<div class="mb-2 {{ $groupClass ?? '' }}">
     @if (!empty($label))
     <label for="{{ $name }}" class="{{ $required ?? '' }}">{{ $label }}</label>
     @endif
