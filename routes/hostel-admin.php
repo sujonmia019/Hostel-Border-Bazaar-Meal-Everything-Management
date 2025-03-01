@@ -11,7 +11,7 @@ Route::name('app.hostel-admin.')->middleware('auth')->group(function(){
     Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
 
     // User Routes
-    Route::prefix('{username}/users')->name('users.')->group(function () {
+    Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('create', [UserController::class, 'create'])->name('create');
         Route::post('store', [UserController::class, 'storeOrUpdate'])->name('store-or-update');

@@ -14,8 +14,10 @@
                         <tr>
                             <th>SL</th>
                             <th>Image</th>
+                            <th>Role</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Gender</th>
                             <th>Status</th>
                             <th>Issue Date</th>
                             <th class="text-end">Action</th>
@@ -59,8 +61,10 @@
             columns: [
                 {data: 'DT_RowIndex'},
                 {data: 'image'},
+                {data: 'role'},
                 {data: 'name'},
                 {data: 'email'},
+                {data: 'gender'},
                 {data: 'status'},
                 {data: 'created_at'},
                 {data: 'action'}
@@ -95,23 +99,24 @@
         });
 
         $(document).on('click','.add_user',function(){
-            window.location.href = "{{ route('app.hostel-admin.users.create', $username) }}";
+            window.location.href = "{{ route('app.hostel-admin.users.create') }}";
         });
 
-        // delete
+        // User delete
         $(document).on('click','.delete_data',function(){
             var id = $(this).data('id');
             var name = $(this).data('name');
-            var url = "{{ route('app.hostel-admin.users.delete',$username) }}";
+            var url = "{{ route('app.hostel-admin.users.delete') }}";
             let row = table.row($(this).parent('tr'));
             delete_data(id, url, row, name);
         });
 
+        // User Status Update
         $(document).on('click', '.change_status', function() {
             var id = $(this).data('id');
             var name = $(this).data('name');
             var status = $(this).data('status');
-            var url = "{{ route('app.hostel-admin.users.status',$username) }}"
+            var url = "{{ route('app.hostel-admin.users.status') }}"
             change_status(id, status, name, url);
         });
     </script>

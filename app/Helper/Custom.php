@@ -21,6 +21,12 @@ define('GENDER',[
     2 => 'Female',
 ]);
 
+define('USER_ROLE',[
+    1 => 'Super Admin',
+    2 => 'Admin',
+    3 => 'Border',
+]);
+
 if(!function_exists('dateFormat')){
     function dateFormat($date, $format = 'd-m-Y'){
         return date($format,strtotime($date));
@@ -53,7 +59,7 @@ if(!function_exists('user_profile')){
 if(!function_exists('user_image')){
     function user_image($path, $name){
         $imagePath =  $path ? file_path($path) : "https://ui-avatars.com/api/?name=".$name."&size=40&color=fff&background=F97C4F";
-        return "<img src='".$imagePath."' alt='".$name."' style='width: 30px; height: 30px;'>";
+        return "<img src='".$imagePath."' alt='".$name."' style='width: 40px; height: 40px;'>";
     }
 }
 

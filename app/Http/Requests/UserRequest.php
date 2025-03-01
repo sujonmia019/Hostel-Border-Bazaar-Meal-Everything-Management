@@ -30,8 +30,9 @@ class UserRequest extends FormRequest
         ];
 
         if(request()->update_id){
-            $rules['username'][3] = ['required','string','max:50','unique:users,username'.request()->update_id];
-            $rules['username'][3] = ['required','string','max:50','unique:users,email'.request()->update_id];
+            $rules['email'][3]                 = 'unique:users,email,'.request()->update_id;
+            $rules['password'][0]              = 'nullable';
+            $rules['password_confirmation'][0] = 'nullable';
         }
 
         return $rules;

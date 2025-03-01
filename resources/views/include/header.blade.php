@@ -48,7 +48,7 @@
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}"> <i class="fa-solid fa-home fa-sm"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is($username.'/users*') ? 'active' : '' }}" href="{{ route('app.hostel-admin.users.index', $username) }}"> <i class="fas fa-users fa-sm"></i> Users</a>
+                    <a class="nav-link {{ request()->is('users*') ? 'active' : '' }}" href="{{ route('app.hostel-admin.users.index') }}"> <i class="fas fa-users fa-sm"></i> Users</a>
                 </li>
             </ul>
         </div>

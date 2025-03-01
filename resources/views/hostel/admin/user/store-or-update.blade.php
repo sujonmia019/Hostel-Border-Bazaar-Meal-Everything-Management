@@ -43,7 +43,7 @@
             var formData = new FormData(form);
 
             $.ajax({
-                url: "{{ route('app.hostel-admin.users.store-or-update', $username) }}",
+                url: "{{ route('app.hostel-admin.users.store-or-update') }}",
                 type: "POST",
                 data: formData,
                 dataType: "JSON",
@@ -69,7 +69,7 @@
                         notification(data.status, data.message);
                         if (data.status == 'success') {
                             setInterval(() => {
-                                window.location.href = "{{ route('app.hostel-admin.users.index', $username) }}";
+                                window.location.href = "{{ route('app.hostel-admin.users.index') }}";
                             }, 600);
                         }
                     }
@@ -79,5 +79,12 @@
                 }
             });
         });
+
+        @isset($user)
+        $(document).ready(function(){
+            $('label[for="password"]').removeClass('required');
+            $('label[for="password_confirmation"]').removeClass('required');
+        });
+        @endisset
     </script>
 @endpush
