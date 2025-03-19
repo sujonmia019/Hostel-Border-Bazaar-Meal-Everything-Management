@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Hostel\Admin;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
-use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use App\Traits\ResponseMessage;
-use App\Traits\UploadAble;
-use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
-{
+{    
     use ResponseMessage;
 
     protected $user;
@@ -27,13 +25,21 @@ class UserController extends Controller
             return $this->user->getData($request);
         }
 
-        $this->setPageData('User List');
-        return view('hostel.admin.user.index');
+        if (Gate::allows('hostel-admin')) {
+            $this->setPageData('User List');
+            return view('hostel.admin.user.index');
+        }else{
+            return $this->unauthorized();
+        }
     }
 
     public function create(){
-        $this->setPageData('Create User');
-        return view('hostel.admin.user.store-or-update');
+        if (Gate::allows('hostel-admin')) {
+            $this->setPageData('Create User');
+            return view('hostel.admin.user.store-or-update');
+        }else{
+            return $this->unauthorized();
+        }
     }
 
     public function storeOrUpdate(UserRequest $request){
@@ -44,14 +50,22 @@ class UserController extends Controller
     }
 
     public function edit(int $id){
-        $user =  $this->user->editUser($id);
-        $this->setPageData('Edit User');
-        return view('hostel.admin.user.store-or-update', ['user'=>$user]);
+        if (Gate::allows('hostel-admin')) {
+            $user =  $this->user->editUser($id);
+            $this->setPageData('Edit User');
+            return view('hostel.admin.user.store-or-update', ['user'=>$user]);
+        }else{
+            return $this->unauthorized();
+        }
     }
 
     public function delete(Request $request){
         if($request->ajax()){
-            return $this->user->deleteUser($request);
+            if (Gate::allows('hostel-admin')) {
+                return $this->user->deleteUser($request);
+            } else {
+                return $this->response_json('error',UNAUTHORIZED_MSG);
+            }
         }
     }
 

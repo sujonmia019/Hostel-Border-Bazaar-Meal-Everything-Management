@@ -13,13 +13,10 @@
                     <thead>
                         <tr>
                             <th>SL</th>
-                            <th>Image</th>
-                            <th>Role</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Gender</th>
+                            <th>Bazaar Name</th>
+                            <th>Amount</th>
                             <th>Status</th>
-                            <th>Issue Date</th>
+                            <th>Bazaar Date</th>
                             <th class="text-end">Action</th>
                         </tr>
                     </thead>
@@ -29,6 +26,9 @@
         </div>
     </div>
 </div>
+
+@include('hostel.border.bazaar.form')
+
 @endSection
 
 @push('scripts')
@@ -47,7 +47,7 @@
             ],
             pageLength: 15, // Rows per page
             ajax: {
-                url: "{{ route('app.hostel-admin.users.index', auth()->user()->username) }}",
+                url: "{{ route('app.border.bazaars.index') }}",
                 type: "GET",
                 dataType: "JSON",
                 data: function (d) {
@@ -55,18 +55,14 @@
                     d.search     = $('input[name="search_here"]').val();
                     d.start_date = $('input[name="start_date"]').val();
                     d.end_date   = $('input[name="end_date"]').val();
-                    d.brand      = $('select#brand').val();
                 },
             },
             columns: [
                 {data: 'DT_RowIndex'},
-                {data: 'image'},
-                {data: 'role'},
                 {data: 'name'},
-                {data: 'email'},
-                {data: 'gender'},
+                {data: 'amount'},
                 {data: 'status'},
-                {data: 'created_at'},
+                {data: 'date'},
                 {data: 'action'}
             ],
             language: {
@@ -87,37 +83,62 @@
                 "<'row mt-2 align-items-center'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 text-end'p>>",
             buttons: [
                 {
-                    text: '+ Add User',
-                    className: 'btn btn-sm btn-primary add_user'
+                    text: '+ Add Bazaar',
+                    className: 'btn btn-sm btn-primary add_bazaar'
                 }
             ]
         });
 
-        // search table
-        $(document).on('keyup keypress','input[name="search_here"]',function(){
-            table.ajax.reload();
+        var bazaarModal = new bootstrap.Modal(document.getElementById('bazaar-modal'),{
+            keyboard: false,
+            backdrop: "static"
         });
 
-        $(document).on('click','.add_user',function(){
-            window.location.href = "{{ route('app.hostel-admin.users.create') }}";
+        $(document).on('click','.add_bazaar', function(){
+            $('#bazaar_form')[0].reset();
+            $('#bazaar_form #update_id').val('');
+            $('#bazaar_form').find('.is-invalid').removeClass('is-invalid');
+            $('#bazaar_form').find('.error').remove();
+            bazaarModal.show();
         });
 
-        // User delete
-        $(document).on('click','.delete_data',function(){
-            var id = $(this).data('id');
-            var name = $(this).data('name');
-            var url = "{{ route('app.hostel-admin.users.delete') }}";
-            let row = table.row($(this).parent('tr'));
-            delete_data(id, url, row, name);
-        });
-
-        // User Status Update
-        $(document).on('click', '.change_status', function() {
-            var id = $(this).data('id');
-            var name = $(this).data('name');
-            var status = $(this).data('status');
-            var url = "{{ route('app.hostel-admin.users.status') }}"
-            change_status(id, status, name, url);
+        $(document).on('click','#save_btn',function(){
+            var form = document.getElementById('bazaar_form');
+            var formData = new FormData(form)
+            $.ajax({
+                url: "{{ route('app.border.bazaars.store') }}",
+                type: "POST",
+                data: formData,
+                dataType: "JSON",
+                contentType: false,
+                processData: false,
+                cache: false,
+                beforeSend: function(){
+                    $('#save_btn span').addClass('spinner-border spinner-border-sm text-primary');
+                },
+                complete: function(){
+                    $('#save_btn span').removeClass('spinner-border spinner-border-sm text-primary');
+                },
+                success: function (data) {
+                    $('#bazaar_form').find('.is-invalid').removeClass('is-invalid');
+                    $('#bazaar_form').find('.error').remove();
+                    if (data.status == false) {
+                        $.each(data.errors, function (key, value) {
+                            $('#bazaar_form #' + key).addClass('is-invalid');
+                            $('#bazaar_form #' + key).parent().append('<small class="error d-block text-left text-danger">' + value + '</small>');
+                        });
+                    } else {
+                        notification(data.status, data.message);
+                        if (data.status == 'success') {
+                            table.ajax.reload();
+                            bazaarModal.hide();
+                        }
+                    }
+                },
+                error: function (xhr, ajaxOption, thrownError) {
+                    console.log(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+                }
+            });
         });
     </script>
 @endpush

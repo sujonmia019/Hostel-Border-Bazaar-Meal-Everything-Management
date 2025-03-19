@@ -26,6 +26,7 @@ define('USER_ROLE',[
     2 => 'Admin',
     3 => 'Border',
 ]);
+define('UNAUTHORIZED_MSG', 'This action not allow!');
 
 if(!function_exists('dateFormat')){
     function dateFormat($date, $format = 'd-m-Y'){

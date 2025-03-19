@@ -47,9 +47,18 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}"> <i class="fa-solid fa-home fa-sm"></i> Dashboard</a>
                 </li>
+                @if (Gate::allows('hostel-admin'))
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('users*') ? 'active' : '' }}" href="{{ route('app.hostel-admin.users.index') }}"> <i class="fas fa-users fa-sm"></i> Users</a>
                 </li>
+                @endif
+
+
+                @if (Gate::allows('border'))
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('bazaars*') ? 'active' : '' }}" href="{{ route('app.border.bazaars.index') }}"> <i class="fas fa-list fa-sm"></i> Bazaar List</a>
+                </li>
+                @endif
             </ul>
         </div>
     </div>

@@ -72,7 +72,9 @@
             background-color: #ffc107 !important;
             color: #212529 !important;
         }
-
+        table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+            text-align: left !important;
+        }
     </style>
     @stack('styles')
 </head>

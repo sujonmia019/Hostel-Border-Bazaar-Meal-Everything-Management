@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Traits\UploadAble;
 use App\Constants\Constants;
 use Illuminate\Http\Request;
-use App\Interface\UserInterface;
+use App\Interfaces\UserInterface;
 use App\Traits\ResponseMessage;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
@@ -50,7 +50,7 @@ class UserRepository implements UserInterface {
 
                 return $action;
             })
-            ->rawColumns(['gender','role','image','status','action'])
+            ->rawColumns(['role','image','status','action'])
             ->make(true);
     }
 
@@ -75,7 +75,8 @@ class UserRepository implements UserInterface {
     }
 
     public function edit(int $id){
-        return User::where(['username'=>auth()->user()->username,'id'=>$id])->firstOrFail();
+        $data = User::where(['username'=>auth()->user()->username,'id'=>$id])->firstOrFail();
+        return $data;
     }
 
     public function delete($request){
@@ -86,5 +87,5 @@ class UserRepository implements UserInterface {
             return $this->delete_message($result);
         }
     }
-    
+
 }

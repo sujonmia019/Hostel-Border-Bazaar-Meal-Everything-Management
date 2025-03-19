@@ -25,3 +25,8 @@ Route::name('app.hostel-admin.')->middleware('auth')->group(function(){
     Route::post('profile/update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
     Route::post('password/update', [ProfileController::class, 'passwordUpdate'])->name('password.update');
 });
+
+
+Route::get('unauthorized',function(){
+    return view('unauthorized');
+});

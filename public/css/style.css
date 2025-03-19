@@ -196,7 +196,7 @@ table tbody tr td:last-child, table tbody tr th:last-child {
 	width: 45px;
 	border-radius: 50%;
     border: 1px solid var(--border);
-    padding: 5px;
+    padding: 2px;
     transition: all 0.3s ease-in-out;
 }
 .top-bar-right img:hover{
