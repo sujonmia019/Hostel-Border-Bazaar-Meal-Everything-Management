@@ -13,10 +13,11 @@
                     <thead>
                         <tr>
                             <th>SL</th>
-                            <th>Bazaar Name</th>
+                            <th width="45%">Bazaar Name</th>
                             <th>Amount</th>
+                            <th>Note</th>
                             <th>Status</th>
-                            <th>Bazaar Date</th>
+                            <th width="10%">Bazaar Date</th>
                             <th class="text-end">Action</th>
                         </tr>
                     </thead>
@@ -61,6 +62,7 @@
                 {data: 'DT_RowIndex'},
                 {data: 'name'},
                 {data: 'amount'},
+                {data: 'note'},
                 {data: 'status'},
                 {data: 'date'},
                 {data: 'action'}

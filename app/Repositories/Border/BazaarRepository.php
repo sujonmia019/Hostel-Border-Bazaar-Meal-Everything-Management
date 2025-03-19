@@ -8,7 +8,7 @@ use Yajra\DataTables\Facades\DataTables;
 class BazaarRepository {
 
     public function getAllUsers($request){
-        $getData = HostelBazaar::where('hostel_id', auth()->user()->hostel_id)->orderBy('id','DESC');
+        $getData = HostelBazaar::where(['hostel_id'=>auth()->user()->hostel_id,'user_id'=>auth()->user()->id])->orderBy('id','DESC');
 
         return DataTables::eloquent($getData)
             ->addIndexColumn()

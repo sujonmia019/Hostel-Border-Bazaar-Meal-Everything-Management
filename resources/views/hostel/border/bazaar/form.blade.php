@@ -8,8 +8,9 @@
             <div class="modal-body">
                 <form id="bazaar_form" method="POST">
                     @csrf
-                    <x-textarea label="Bazaar Name" name="name" required="required" rows="2"></x-textarea>
-                    <x-input type="number" label="Amount" name="amount" required="required"/>
+                    <x-textarea label="Bazaar Name" name="name" required="required" rows="2" optional="Type the details of the daily bazaar here."></x-textarea>
+                    <x-input type="number" label="Total Amount" name="amount" required="required"/>
+                    <x-textarea label="Note" name="note" rows="1"></x-textarea>
                     <x-input type="date" label="Date" name="date" required="required"/>
                 </form>
                 <div class="text-end">

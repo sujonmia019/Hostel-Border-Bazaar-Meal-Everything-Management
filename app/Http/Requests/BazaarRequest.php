@@ -22,8 +22,9 @@ class BazaarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'   => ['required','string','max:150'],
+            'name'   => ['required','string'],
             'amount' => ['required','integer'],
+            'note'   => ['nullable','string'],
             'date'   => ['required','date_format:Y-m-d'],
         ];
     }

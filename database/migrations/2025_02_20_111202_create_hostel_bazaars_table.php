@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('name');
             $table->decimal('amount',8,2);
             $table->date('date');
+            $table->text('note')->nullable();
             $table->enum('status',[1,2])->default(1)->comment('1 = Approved, 2 = Pending');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');

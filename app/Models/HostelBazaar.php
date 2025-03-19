@@ -21,7 +21,7 @@ class HostelBazaar extends Model
      *
      * @var array
      */
-    protected $fillable = ['hostel_id','user_id','name','amount','date','status'];
+    protected $fillable = ['hostel_id','user_id','name','amount','note','date','status'];
 
     /**
      * The attributes that should be cast to native types.
