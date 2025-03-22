@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Hostel\Border\MealController;
 use App\Http\Controllers\Hostel\Border\BazaarController;
 
 Auth::routes([
@@ -24,6 +25,12 @@ Route::name('app.')->middleware('auth')->group(function(){
         Route::prefix('bazaars')->name('bazaars.')->group(function(){
             Route::get('/', [BazaarController::class, 'index'])->name('index');
             Route::post('store', [BazaarController::class, 'store'])->name('store');
+        });
+
+        // Meal Routes
+        Route::prefix('meals')->name('meals.')->group(function(){
+            Route::get('/', [MealController::class, 'index'])->name('index');
+            Route::post('store', [MealController::class, 'store'])->name('store');
         });
     });
 
