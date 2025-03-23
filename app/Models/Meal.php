@@ -21,7 +21,7 @@ class Meal extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','hostel_id','total_meal','meal_type','comment'];
+    protected $fillable = ['user_id','hostel_id','total_meal','meal_type','comment','meal_date'];
 
     /**
      * The attributes that should be cast to native types.

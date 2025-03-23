@@ -53,10 +53,13 @@
                 </li>
                 @endif
 
-
                 @if (Gate::allows('border'))
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('bazaars*') ? 'active' : '' }}" href="{{ route('app.border.bazaars.index') }}"> <i class="fas fa-list fa-sm"></i> Bazaar List</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('meals*') ? 'active' : '' }}" href="{{ route('app.border.meals.index') }}"> <i class="fas fa-list fa-sm"></i> Daily Meal</a>
                 </li>
                 @endif
             </ul>

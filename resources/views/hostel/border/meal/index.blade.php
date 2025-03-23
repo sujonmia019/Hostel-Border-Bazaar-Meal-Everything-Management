@@ -6,17 +6,41 @@
         table tbody tr td:last-child {
             text-align: center !important;
         }
+        table td {
+            vertical-align: middle !important;
+            max-height: 60px;
+            height: 60px;
+        }
+        .meal_add:hover {
+            background: #06d1a4;
+            border-color: #02ac87
+        }
+        .meal_add:hover small {
+            color: #ffffff !important;
+        }
     </style>
 @endpush
 @section('content')
+@php
+    $date        = \Carbon\Carbon::parse($currentMonth . '-01'); // start of month day
+    $startDay    = $date->dayOfWeek;
+    $daysInMonth = $date->daysInMonth;
+    $dayCounter  = 1;
+    $totalMeal = DB::table('meals')->whereMonth('meal_date',Carbon\Carbon::now())->sum('total_meal');
+@endphp
+
 <div class="container my-4">
     <div class="card rounded-0">
-        <div class="card-header bg-white">
-            <h5 class="mb-0 card-title">Monthly Meal Calendar</h5>
+        <div class="card-header bg-white border-0">
+            <h5 class="mb-0 card-title d-flex align-items-center justify-content-between">
+                <span>Monthly Meal Calendar</span>
+                <span>Total Meal: {{ $totalMeal }}</span>
+                <button class="btn btn-sm btn-danger" onclick="location.reload(true)"><i class="fas fa-refresh"></i></button>
+            </h5>
         </div>
-        <div class="card-body px-0">
+        <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table table-bordered text-center">
+            <table class="table table-bordered text-center mb-0">
                 <thead>
                     <tr>
                         <th>Sun</th>
@@ -29,36 +53,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $date        = \Carbon\Carbon::parse($currentMonth . '-01'); // start of month day
-                        $startDay    = $date->dayOfWeek;
-                        $daysInMonth = $date->daysInMonth;
-                        $dayCounter  = 1;
-                    @endphp
                     <tr>
                         @for ($i = 0; $i < $startDay; $i++)
                             <td></td>
                         @endfor
 
                         @for ($day = 1; $day <= $daysInMonth; $day++)
-                            @php
-                                $meal = $meals->where('created_at','=',$date->format('Y-m-d'))->first();
-                            @endphp
-                            <td class="p-2">
+                            <td class="p-2 meal_add" data-date="{{ $date->format('Y-m-d') }}" style="cursor: pointer;">
                                 <div class="fw-bold">{{ $day }}</div>
+                                @php
+                                    $meal = DB::table('meals')->whereDate('meal_date',$date->format('Y-m-d'))->value('total_meal');
+                                @endphp
                                 @if ($meal)
-                                    <span class="badge bg-success">{{ $meal->total_meal }} Meals</span>
-                                    <small class="d-block">
-                                        @switch($meal->meal_type)
-                                            @case(1) 🍳 Breakfast @break
-                                            @case(2) 🍛 Lunch @break
-                                            @case(3) 🍽 Dinner @break
-                                            @case(4) 🍵 Others @break
-                                        @endswitch
-                                    </small>
-                                    <button class="btn btn-sm btn-primary mt-1" data-bs-toggle="modal" data-bs-target="#editMealModal" data-date="{{ $date->format('Y-m-d') }}">Edit</button>
-                                @else
-                                    <button class="btn btn-sm btn-outline-primary mt-1" data-bs-toggle="modal" data-bs-target="#addMealModal" data-date="{{ $date->format('Y-m-d') }}">Add</button>
+                                <small class="text-secondary">Meal: <strong class="text-danger">{{ $meal }}</strong></small>
                                 @endif
                             </td>
                             @if (($day + $startDay) % 7 == 0)
@@ -79,3 +86,12 @@
 </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).on('click','.meal_add',function(){
+            let mealDate = $(this).data('date');
+            alert(mealDate)
+        });
+    </script>
+@endpush
