@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Hostel_Admin;
 
 use App\Models\User;
 use App\Traits\UploadAble;
 use App\Constants\Constants;
 use Illuminate\Http\Request;
-use App\Interfaces\UserInterface;
 use App\Traits\ResponseMessage;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
+use App\Interfaces\Hostel_Admin\UserInterface;
 
 class UserRepository implements UserInterface {
 

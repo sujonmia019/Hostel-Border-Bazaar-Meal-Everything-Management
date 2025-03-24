@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('meal_date');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
+            $table->index(['total_meal','meal_date','meal_type']);
         });
     }
 

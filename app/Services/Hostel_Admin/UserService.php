@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Hostel_Admin;
 
-use App\Repositories\UserRepository;
+use App\Repositories\Hostel_Admin\UserRepository;
 
 class UserService
 {

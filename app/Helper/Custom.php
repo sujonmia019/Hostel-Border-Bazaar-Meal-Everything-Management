@@ -21,6 +21,13 @@ define('GENDER',[
     2 => 'Female',
 ]);
 
+define('MEAL_TYPE',[
+    1 => 'Breakfast',
+    2 => 'Lunch',
+    3 => 'Dinner',
+    4 => 'All'
+]);
+
 define('USER_ROLE',[
     1 => 'Super Admin',
     2 => 'Admin',

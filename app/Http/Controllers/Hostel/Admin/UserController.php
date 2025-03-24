@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Hostel\Admin;
 
 use Illuminate\Http\Request;
-use App\Services\UserService;
 use App\Traits\ResponseMessage;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
-
+use App\Services\Hostel_Admin\UserService;
+        
 class UserController extends Controller
-{    
+{
     use ResponseMessage;
 
     protected $user;

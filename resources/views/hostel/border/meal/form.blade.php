@@ -2,19 +2,24 @@
     <div class="modal-dialog">
         <div class="modal-content rounded-0">
             <div class="modal-header py-2">
-                <h6 class="modal-title">Add Bazaar</h6>
+                <h6 class="modal-title">Add Meal</h6>
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="bazaar_form" method="POST">
                     @csrf
-                    <x-textarea label="Bazaar Name" name="name" required="required" rows="2" optional="Type the details of the daily bazaar here."></x-textarea>
-                    <x-input type="number" label="Total Amount" name="amount" required="required"/>
-                    <x-textarea label="Note" name="note" rows="1"></x-textarea>
-                    <x-input type="date" label="Date" name="date" required="required"/>
+                    <input type="hidden" name="meal_date" id="meal_date">
+                    <x-input type="number" label="Total Meal" name="total_meal" required="required"/>
+                    <x-textarea label="Comment" name="comment" rows="2"></x-textarea>
+                    <x-select label="Meal Type" name="meal_type" required="required">
+                        <option value="">-- Select Option --</option>
+                        @foreach (MEAL_TYPE as $key=>$value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
+                    </x-select>
                 </form>
                 <div class="text-end">
-                    <button type="button" class="btn btn-primary btn-sm rounded-0 shadow-none" id="save_btn"><span></span> Save</button>
+                    <button type="button" class="btn btn-primary btn-sm rounded-0 shadow-none" id="save-btn"><span></span> Save</button>
                 </div>
             </div>
         </div>

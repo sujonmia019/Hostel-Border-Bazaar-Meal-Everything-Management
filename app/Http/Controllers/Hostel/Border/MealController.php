@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Meal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MealRequest;
 use Illuminate\Support\Facades\Auth;
 
 class MealController extends Controller
@@ -23,5 +24,19 @@ class MealController extends Controller
         $this->setPageData('Meal List', 'Meal List');
         return view('hostel.border.meal.index', compact('meals','currentMonth'));
     }
-    
+
+    public function store(MealRequest $request)
+    {
+        if ($request->ajax()) {
+            $collection = collect($request->validated());
+            $collection = $collection->merge(['hostel_id'=>auth()->user()->hostel_id,'user_id'=>auth()->user()->id]);
+            $result = Meal::create($collection->all());
+            if ($result) {
+                return $this->response_json('success','Your meal added successfull.');
+            } else{
+                return $this->response_json('error','Failed to add meal.');
+            }
+        }
+    }
+
 }

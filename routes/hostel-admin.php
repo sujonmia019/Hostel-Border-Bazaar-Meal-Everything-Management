@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Hostel\Admin\BillStatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Hostel\Admin\HomeController;
@@ -18,6 +19,13 @@ Route::name('app.hostel-admin.')->middleware('auth')->group(function(){
         Route::get('{id}/edit', [UserController::class, 'edit'])->name('edit');
         Route::post('delete', [UserController::class, 'delete'])->name('delete');
         Route::post('status', [UserController::class, 'changeStatus'])->name('status');
+    }); 
+
+    // Bill Status Routes
+    Route::prefix('bill-statuses')->name('statuses.')->group(function () {
+        Route::get('/', [BillStatusController::class, 'index'])->name('index');
+        Route::post('store-or-update', [BillStatusController::class, 'storeOrUpdate'])->name('store-or-update');
+        Route::get('edit', [BillStatusController::class, 'edit'])->name('edit');
     });
 
     // Profile Route

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces;
+namespace App\Interfaces\Hostel_Admin;
 
 interface UserInterface {
 
@@ -10,3 +10,6 @@ interface UserInterface {
     public function delete($data);
 
 }
+
+
+
