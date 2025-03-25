@@ -16,6 +16,11 @@ define('STATUS_LABEL',[
     3 => '<span class="rounded-0 fw-normal badge badge-sm bg-success">Completed</span>',
 ]);
 
+define('TYPE',[
+    'all' => 'For All Border',
+    'user' => 'For User',
+]);
+
 define('GENDER',[
     1 => 'Male',
     2 => 'Female',

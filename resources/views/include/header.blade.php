@@ -54,6 +54,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('bill-statuses*') ? 'active' : '' }}" href="{{ route('app.hostel-admin.statuses.index') }}"> <i class="fas fa-tags fa-sm"></i> Bill Status</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('bills*') ? 'active' : '' }}" href="{{ route('app.hostel-admin.bills.index') }}"> <i class="fas fa-bank fa-sm"></i> Bill</a>
+                </li>
                 @endif
 
                 @if (Gate::allows('border'))

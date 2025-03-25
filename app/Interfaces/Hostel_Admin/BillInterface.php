@@ -2,9 +2,9 @@
 
 namespace App\Interfaces\Hostel_Admin;
 
-interface BillStatusInterface {
+interface BilllInterface {
 
-    public function getAllUsers($data);
+    public function getAll($data);
     public function userUpdateOrCreate($data);
     public function edit(int $id);
 

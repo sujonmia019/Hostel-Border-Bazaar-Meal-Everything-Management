@@ -4,15 +4,15 @@ namespace App\Repositories\Hostel_Admin;
 
 use App\Traits\ResponseMessage;
 use Yajra\DataTables\Facades\DataTables;
-use App\Interfaces\Hostel_Admin\BillStatusInterface;
-use App\Models\BillStatus;
+use App\Interfaces\Hostel_Admin\BillInterface;
+use App\Models\Bill;
 
-class BillStatusRepository implements BillStatusInterface {
+class BillRepository {
 
     use ResponseMessage;
 
-    public function getAllUsers($request){
-        $getData = BillStatus::where('hostel_id', auth()->user()->hostel_id)->orderBy('id','DESC');
+    public function getAll($request){
+        $getData = Bill::where('hostel_id', auth()->user()->hostel_id)->orderBy('id','DESC');
 
         return DataTables::eloquent($getData)
             ->addIndexColumn()
@@ -28,22 +28,21 @@ class BillStatusRepository implements BillStatusInterface {
                 $action = '<div class="d-flex align-items-center justify-content-end">';
                 $action .= '<button type="button" class="btn-style btn-style-edit edit_data" data-id="'.$row->id.'"><i class="fa fa-edit fa-sm"></i></button>';
                 $action .= '</div>';
-
                 return $action;
             })
-            ->rawColumns(['status','action'])
+            ->rawColumns(['action'])
             ->make(true);
     }
 
     public function userUpdateOrCreate($request){
         $collection = collect($request->validated());
         $collection = $collection->merge(['hostel_id'=>auth()->user()->hostel_id]);
-        $result     = BillStatus::updateOrCreate(['id'=>$request->update_id],$collection->all());
+        $result     = Bill::updateOrCreate(['id'=>$request->update_id],$collection->all());
         return $result;
     }
 
     public function edit(int $id){
-        $data = BillStatus::where(['hostel_id'=>auth()->user()->hostel_id,'id'=>$id])->firstOrFail();
+        $data = Bill::where(['hostel_id'=>auth()->user()->hostel_id,'id'=>$id])->firstOrFail();
         return $data;
     }
 

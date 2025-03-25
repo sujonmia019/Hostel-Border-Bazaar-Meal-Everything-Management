@@ -11,6 +11,7 @@ use App\Traits\ResponseMessage;
 
 class BillStatusController extends Controller
 {
+
     use ResponseMessage;
 
     protected $billStatusRepo;

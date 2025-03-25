@@ -5,9 +5,10 @@
     <select name="{{ $name }}" @if(!empty($dataSearch)) data-live-search="{{ $dataSearch }}" @endif id="{{ $name }}" class="form-control form-control-sm rounded-0 shadow-none {{ $class ?? '' }}" @if(!empty($onchange)) onchange="{{ $onchange }}" @endif @if(!empty($multiple)) multiple @endif>
         {{ $slot }}
     </select>
-    @isset($error)
-        @error($error)
+    @isset($name)
+        @error($name)
             <small class="text-danger d-block text-start">{{ $message }}</small>
         @enderror
     @endisset
 </div>
+    
