@@ -46,7 +46,14 @@ class BillController extends Controller
     }
 
     public function storeOrUpdate(BillRequest $request){
-        dd(date("Y-m-01", strtotime($request->bill_month)));
+        if($request->ajax()){
+            $result = $this->billRepo->createOrUpdate($request);
+            if($result){
+                return $this->response_json('success','Bill has been saved successfull.');
+            }else{
+                return $this->response_json('error','Bill not saved.');
+            }
+        }
     }
 
 }

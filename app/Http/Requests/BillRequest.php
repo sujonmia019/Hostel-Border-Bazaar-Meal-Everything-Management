@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\FormRequest;
 
 class BillRequest extends FormRequest
 {
@@ -25,7 +25,8 @@ class BillRequest extends FormRequest
             'type'           => ['required','string','in:all,user'],
             'bill_status_id' => ['required','integer'],
             'amount'         => ['required','integer'],
-            'bill_month'     => ['required','date_format:F Y']
+            'bill_month'     => ['required','date_format:F Y'],
+            'border_id'      => ['nullable','required_if:type,user']
         ];
     }
 }

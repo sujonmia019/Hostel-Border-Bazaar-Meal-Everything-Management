@@ -59,11 +59,11 @@
             columns: [
                 {data: 'DT_RowIndex'},
                 {data: 'type'},
-                {data: 'bill_status_id'},
+                {data: 'bill_status'},
                 {data: 'amount'},
-                {data: 'bill_date'},
+                {data: 'bill_month'},
                 {data: 'note'},
-                {data: 'note'},
+                {data: 'border'},
                 {data: 'created_at'},
                 {data: 'action'}
             ],
@@ -95,62 +95,5 @@
             location.href = "{{ route('app.hostel-admin.bills.create') }}";
         });
 
-        $(document).on('click','#save_btn',function(){
-            var form = document.getElementById('status_form');
-            var formData = new FormData(form)
-            $.ajax({
-                url: "{{ route('app.hostel-admin.bills.store-or-update') }}",
-                type: "POST",
-                data: formData,
-                dataType: "JSON",
-                contentType: false,
-                processData: false,
-                cache: false,
-                beforeSend: function(){
-                    $('#save_btn span').addClass('spinner-border spinner-border-sm text-primary');
-                },
-                complete: function(){
-                    $('#save_btn span').removeClass('spinner-border spinner-border-sm text-primary');
-                },
-                success: function (data) {
-                    $('#status_form').find('.is-invalid').removeClass('is-invalid');
-                    $('#status_form').find('.error').remove();
-                    if (data.status == false) {
-                        $.each(data.errors, function (key, value) {
-                            $('#status_form #' + key).addClass('is-invalid');
-                            $('#status_form #' + key).parent().append('<small class="error d-block text-left text-danger">' + value + '</small>');
-                        });
-                    } else {
-                        notification(data.status, data.message);
-                        if (data.status == 'success') {
-                            table.ajax.reload();
-                            bazaarModal.hide();
-                        }
-                    }
-                },
-                error: function (xhr, ajaxOption, thrownError) {
-                    console.log(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
-                }
-            });
-        });
-
-        $(document).on('click','.edit_data',function(){
-            let id = $(this).data('id');
-            if(id){
-                $.ajax({
-                    type: "GET",
-                    url: "{{ route('app.hostel-admin.statuses.edit') }}",
-                    data: {_token:_token,id:id},
-                    dataType: "json",
-                    success: function (response) {
-                        if(response.status == 'success'){
-                            $('#status_form #update_id').val(response.data.id);
-                            $('#status_form #name').val(response.data.name);
-                            bazaarModal.show();
-                        }
-                    }
-                });
-            }
-        });
     </script>
 @endpush

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('type',['all','user'])->default('all');
             $table->text('note')->nullable();
             $table->decimal('amount');
-            $table->date('bill_date');
+            $table->date('bill_month');
             $table->unsignedBigInteger('border_id')->nullable()->comment('if spacific border bill amount add.');
             $table->timestamps();
         });

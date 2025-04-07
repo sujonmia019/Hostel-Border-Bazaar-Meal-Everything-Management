@@ -14,7 +14,7 @@
                     <h6 class="card-title mb-0">{{ $title }}</h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('app.hostel-admin.bills.store-or-update') }}" method="POST">
+                    <form method="POST" id="bill_form">
                         @csrf
                         <x-select name="type" label="User Type" required="required" onchange="selectType(this.value)">
                             @foreach (TYPE as $key=>$value)
@@ -36,9 +36,10 @@
                             @endforelse
                         </x-select>
                         <x-input type="number" name="amount" label="Amount" required="required"/>
-                        <x-input name="bill_month" label="Bill Month" required="required"/>
-                        <x-button type="submit" label="Save" class="btn-primary"/>
+                        <x-input name="bill_month" label="Bill Month" required="required" value="{{ date('F Y') }}"/>
                     </form>
+
+                    <x-button label="Save" class="btn-primary" id="save_btn"/>
                 </div>
             </div>
         </div>
@@ -66,5 +67,45 @@
             $('.user_border').removeClass('d-none');
         }
     }
+
+    $(document).on('click','#save_btn',function(){
+        var form = document.getElementById('bill_form');
+        var formData = new FormData(form)
+        $.ajax({
+            url: "{{ route('app.hostel-admin.bills.store-or-update') }}",
+            type: "POST",
+            data: formData,
+            dataType: "JSON",
+            contentType: false,
+            processData: false,
+            cache: false,
+            beforeSend: function(){
+                $('#save_btn span').addClass('spinner-border spinner-border-sm text-primary');
+            },
+            complete: function(){
+                $('#save_btn span').removeClass('spinner-border spinner-border-sm text-primary');
+            },
+            success: function (data) {
+                $('#bill_form').find('.is-invalid').removeClass('is-invalid');
+                $('#bill_form').find('.error').remove();
+                if (data.status == false) {
+                    $.each(data.errors, function (key, value) {
+                        $('#bill_form #' + key).addClass('is-invalid');
+                        $('#bill_form #' + key).parent().append('<small class="error d-block text-left text-danger">' + value + '</small>');
+                    });
+                } else {
+                    notification(data.status, data.message);
+                    if (data.status == 'success') {
+                        setInterval(() => {
+                            window.location.href = "{{ route('app.hostel-admin.bills.index') }}";
+                        }, 800);
+                    }
+                }
+            },
+            error: function (xhr, ajaxOption, thrownError) {
+                console.log(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+            }
+        });
+    });
 </script>
 @endpush

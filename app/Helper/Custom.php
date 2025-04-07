@@ -18,7 +18,7 @@ define('STATUS_LABEL',[
 
 define('TYPE',[
     'all' => 'For All Border',
-    'user' => 'For User',
+    'user' => 'For Spacific Border',
 ]);
 
 define('GENDER',[

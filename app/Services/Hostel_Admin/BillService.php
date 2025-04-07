@@ -18,7 +18,7 @@ class BillService
     }
 
     public function createOrUpdate($data){
-        return $this->BillRepository->userUpdateOrCreate($data);
+        return $this->BillRepository->updateOrStore($data);
     }
 
     public function editData($id){
