@@ -26,7 +26,8 @@ class BillRequest extends FormRequest
             'bill_status_id' => ['required','integer'],
             'amount'         => ['required','integer'],
             'bill_month'     => ['required','date_format:F Y'],
-            'border_id'      => ['nullable','required_if:type,user']
+            'border_id'      => ['nullable','required_if:type,user'],
+            'note'           => ['nullable','string']
         ];
     }
 }

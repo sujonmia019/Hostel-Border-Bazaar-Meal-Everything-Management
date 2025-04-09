@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('amount');
             $table->date('bill_month');
             $table->unsignedBigInteger('border_id')->nullable()->comment('if spacific border bill amount add.');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

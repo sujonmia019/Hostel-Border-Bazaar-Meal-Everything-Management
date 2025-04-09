@@ -33,7 +33,7 @@ Route::name('app.hostel-admin.')->middleware('auth')->group(function(){
         Route::get('/', [BillController::class, 'index'])->name('index');
         Route::get('create', [BillController::class, 'create'])->name('create');
         Route::post('store-or-update', [BillController::class, 'storeOrUpdate'])->name('store-or-update');
-        Route::get('edit', [BillController::class, 'edit'])->name('edit');
+        Route::get('edit/{id}', [BillController::class, 'edit'])->name('edit');
     });
 
     // Profile Route
