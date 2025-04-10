@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('title',$siteTitle)
 @push('styles')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+<link rel="stylesheet" href="{{ asset('/') }}css/flatpickr.min.css">
+<link rel="stylesheet" href="{{ asset('/') }}flatpickr.style.css">
 @endpush
 
 @section('content')
@@ -49,8 +49,8 @@
 @endSection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+<script src="{{ asset('/') }}js/flatpickr.min.js"></script>
+<script src="{{ asset('/') }}js/flatpickr.index.js"></script>
 <script>
     flatpickr("#bill_month", {
         plugins: [new monthSelectPlugin({
