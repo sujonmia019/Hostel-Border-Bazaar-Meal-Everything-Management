@@ -21,7 +21,7 @@ class Bill extends Model
      *
      * @var array
      */
-    protected $fillable = ['hostel_id','bill_status_id','type','note','amount','bill_month','border_id'];
+    protected $fillable = ['hostel_id','bill_status_id','type','note','amount','bill_month','border_id','updated_by'];
 
 
     public function billStatus(){

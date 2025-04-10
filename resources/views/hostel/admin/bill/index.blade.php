@@ -18,7 +18,8 @@
                             <th>Amount</th>
                             <th>Bill Month</th>
                             <th>Note</th>
-                            <th>User</th>
+                            <th>Border</th>
+                            <th>Edit By</th>
                             <th>Created Date</th>
                             <th class="text-end">Action</th>
                         </tr>
@@ -64,6 +65,7 @@
                 {data: 'bill_month'},
                 {data: 'note'},
                 {data: 'border'},
+                {data: 'updated_by'},
                 {data: 'created_at'},
                 {data: 'action'}
             ],

@@ -16,27 +16,31 @@
                 <div class="card-body">
                     <form method="POST" id="bill_form">
                         @csrf
+                        @isset($edit)
+                        <input type="hidden" name="update_id" id="update_id" value="{{ $edit->id }}">
+                        @endisset
                         <x-select name="type" label="User Type" required="required" onchange="selectType(this.value)">
                             @foreach (TYPE as $key=>$value)
-                            <option value="{{ $key }}">{{ $value }}</option>
+                            <option value="{{ $key }}" @isset($edit) {{ $edit->type == $key ? 'selected' : '' }} @endisset>{{ $value }}</option>
                             @endforeach
                         </x-select>
                         <x-select groupClass="d-none user_border" name="border_id" label="Border" required="required">
                             <option value="">-- Select Option --</option>
                             @foreach ($borders as $key=>$value)
-                            <option value="{{ $key }}">{{ $value }}</option>
+                            <option value="{{ $key }}" @isset($edit) {{ $edit->border_id == $key ? 'selected' : '' }} @endisset>{{ $value }}</option>
                             @endforeach
                         </x-select>
                         <x-select name="bill_status_id" label="Bill Type" required="required">
                             <option value="">-- Select Option --</option>
                             @forelse ($billStatus as $id=>$value)
-                            <option value="{{ $id }}">{{ $value }}</option>
+                            <option value="{{ $id }}" @isset($edit) {{ $edit->bill_status_id == $id ? 'selected' : '' }} @endisset>{{ $value }}</option>
                             @empty
 
                             @endforelse
                         </x-select>
-                        <x-input type="number" name="amount" label="Amount" required="required"/>
-                        <x-input name="bill_month" label="Bill Month" required="required" value="{{ date('F Y') }}"/>
+                        <x-input type="number" name="amount" label="Amount" required="required" value="{{ round($edit->amount) ?? '' }}"/>
+                        <x-textarea name="note" label="Note" value="{{ $edit->note ?? '' }}"></x-textarea>
+                        <x-input name="bill_month" label="Bill Month" required="required" value="{{ dateFormat($edit->bill_month,'F Y') ?? date('F Y') }}"/>
                     </form>
 
                     <x-button label="Save" class="btn-primary" id="save_btn"/>
@@ -67,6 +71,10 @@
             $('.user_border').removeClass('d-none');
         }
     }
+
+    @if(isset($edit) && !empty($edit->border_id))
+    selectType({{ $edit->border_id }});
+    @endisset
 
     $(document).on('click','#save_btn',function(){
         var form = document.getElementById('bill_form');

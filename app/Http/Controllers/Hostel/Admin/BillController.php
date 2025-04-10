@@ -56,4 +56,11 @@ class BillController extends Controller
         }
     }
 
+    public function edit(int $id){
+        $data = $this->billRepo->editData($id);
+
+        $this->setPageData('Edit Bill','Edit Bill');
+        return view('hostel.admin.bill.form', $data);
+    }
+
 }
