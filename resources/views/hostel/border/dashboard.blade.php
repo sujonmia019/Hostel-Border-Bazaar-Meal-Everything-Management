@@ -105,23 +105,35 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $totalAmount = 0;
+                                    $totalWithoutBorderAmount = 0;
+                                    $totalBorderAmount = 0;
                                 @endphp
-                                @foreach ($borderConsts as $cost)
+                                @foreach ($borderWithoutCostData as $withoutBorder)
                                 @php
-                                    $totalAmount += $cost->amount;
+                                    $totalWithoutBorderAmount += $withoutBorder->amount;
                                 @endphp
                                 <tr>
-                                    <td>{{ $cost->billStatus->name }}</td>
-                                    <td>{{ $cost->amount }}</td>
-                                    <td class="text-start">{{ $cost->note }}</td>
+                                    <td>{{ $withoutBorder->billStatus->name }}</td>
+                                    <td>{{ $withoutBorder->amount }}</td>
+                                    <td class="text-start">{{ $withoutBorder->note }}</td>
+                                </tr>
+                                @endforeach
+
+                                @foreach ($borderCostData as $withBorder)
+                                @php
+                                    $totalBorderAmount += $withBorder->amount;
+                                @endphp
+                                <tr>
+                                    <td>{{ $withBorder->billStatus->name }}</td>
+                                    <td>{{ $withBorder->amount }}</td>
+                                    <td class="text-start">{{ $withBorder->note }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td></td>
-                                    <td><strong>Total Amount:</strong> {{ $totalAmount }} TK</td>
+                                    <td><strong>Total Amount:</strong> {{ $totalWithoutBorderAmount + $totalBorderAmount }} TK</td>
                                     <td></td>
                                 </tr>
                             </tfoot>
