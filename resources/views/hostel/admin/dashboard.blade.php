@@ -2,7 +2,12 @@
 @section('title',$siteTitle)
 
 @push('styles')
-
+<style>
+    .scrollable-table {
+        max-height: 302px;
+        overflow-y: auto;
+    }
+</style>
 @endpush
 
 @section('content')

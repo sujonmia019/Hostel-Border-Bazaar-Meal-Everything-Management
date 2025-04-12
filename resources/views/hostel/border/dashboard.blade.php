@@ -9,14 +9,14 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6 col-12">
             <div class="card rounded-0">
                 <div class="card-header bg-white">
                     <h6 class="card-title mb-0">Bazaar Expense</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered mb-0">
+                    <div class="table-responsive scrollable-table">
+                        <table class="table table-sm table-bordered mb-0 table-hover">
                             <thead>
                                 <th>SL</th>
                                 <th>Amount</th>
@@ -50,14 +50,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6 col-12 mt-3 mt-md-0">
             <div class="card rounded-0">
                 <div class="card-header bg-white">
                     <h6 class="card-title mb-0">Meal History</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered mb-0">
+                    <div class="table-responsive scrollable-table">
+                        <table class="table table-sm table-bordered mb-0 table-hover">
                             <thead>
                                 <th>Type</th>
                                 <th>Meal</th>
@@ -90,14 +90,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6 col-12 mt-3 mt-md-0">
             <div class="card rounded-0">
                 <div class="card-header bg-white">
                     <h6 class="card-title mb-0">Hostel Costs</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered mb-0">
+                    <div class="table-responsive scrollable-table">
+                        <table class="table table-sm table-bordered mb-0 table-hover">
                             <thead>
                                 <th>Type</th>
                                 <th>Amount</th>
