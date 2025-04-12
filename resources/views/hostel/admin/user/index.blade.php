@@ -47,7 +47,7 @@
             ],
             pageLength: 15, // Rows per page
             ajax: {
-                url: "{{ route('app.hostel-admin.users.index', auth()->user()->username) }}",
+                url: "{{ route('app.hostel-admin.borders.index', auth()->user()->username) }}",
                 type: "GET",
                 dataType: "JSON",
                 data: function (d) {
@@ -99,14 +99,14 @@
         });
 
         $(document).on('click','.add_user',function(){
-            window.location.href = "{{ route('app.hostel-admin.users.create') }}";
+            window.location.href = "{{ route('app.hostel-admin.borders.create') }}";
         });
 
         // User delete
         $(document).on('click','.delete_data',function(){
             var id = $(this).data('id');
             var name = $(this).data('name');
-            var url = "{{ route('app.hostel-admin.users.delete') }}";
+            var url = "{{ route('app.hostel-admin.borders.delete') }}";
             let row = table.row($(this).parent('tr'));
             delete_data(id, url, row, name);
         });
@@ -116,7 +116,7 @@
             var id = $(this).data('id');
             var name = $(this).data('name');
             var status = $(this).data('status');
-            var url = "{{ route('app.hostel-admin.users.status') }}"
+            var url = "{{ route('app.hostel-admin.borders.status') }}"
             change_status(id, status, name, url);
         });
     </script>

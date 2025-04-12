@@ -49,7 +49,7 @@
                 </li>
                 @if (Gate::allows('hostel-admin'))
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('users*') ? 'active' : '' }}" href="{{ route('app.hostel-admin.users.index') }}"> <i class="fas fa-users fa-sm"></i> Users</a>
+                    <a class="nav-link {{ request()->is('borders*') ? 'active' : '' }}" href="{{ route('app.hostel-admin.borders.index') }}"> <i class="fas fa-users fa-sm"></i> Borders</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('bill-statuses*') ? 'active' : '' }}" href="{{ route('app.hostel-admin.statuses.index') }}"> <i class="fas fa-tags fa-sm"></i> Bill Status</a>

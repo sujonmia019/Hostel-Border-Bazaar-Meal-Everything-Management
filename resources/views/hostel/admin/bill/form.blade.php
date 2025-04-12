@@ -38,9 +38,9 @@
 
                             @endforelse
                         </x-select>
-                        <x-input type="number" name="amount" label="Amount" required="required" value="{{ round($edit->amount) ?? '' }}"/>
+                        <x-input type="number" name="amount" label="Amount" required="required" value="{{ isset($edit) ? round($edit->amount) : '' }}"/>
                         <x-textarea name="note" label="Note" value="{{ $edit->note ?? '' }}"></x-textarea>
-                        <x-input name="bill_month" label="Bill Month" required="required" value="{{ dateFormat($edit->bill_month,'F Y') ?? date('F Y') }}"/>
+                        <x-input name="bill_month" label="Bill Month" required="required" value="{{ isset($edit) ? dateFormat($edit->bill_month,'F Y') : date('F Y') }}"/>
                     </form>
 
                     <x-button label="Save" class="btn-primary" id="save_btn"/>

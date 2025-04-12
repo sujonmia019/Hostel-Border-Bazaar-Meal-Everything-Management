@@ -8,6 +8,7 @@ use App\Models\Bill;
 use App\Models\BillStatus;
 use App\Models\User;
 use App\Traits\ResponseMessage;
+use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
 
 class BillRepository {
@@ -15,7 +16,10 @@ class BillRepository {
     use ResponseMessage;
 
     public function getAll($request){
-        $getData = Bill::with(['billStatus','border'])->where('hostel_id', auth()->user()->hostel_id)->orderBy('id','DESC');
+        $getData = Bill::with(['billStatus','border'])
+                    ->whereMonth('bill_month', Carbon::now())
+                    ->where('hostel_id', auth()->user()->hostel_id)
+                    ->orderBy('id','DESC');
 
         return DataTables::eloquent($getData)
             ->addIndexColumn()
@@ -28,7 +32,7 @@ class BillRepository {
                 return dateFormat($row->bill_month, 'F-Y');
             })
             ->addColumn('type', function($row){
-                return TYPE[$row->type];
+                return TYPE_LABEL[$row->type];
             })
             ->addColumn('border', function($row){
                 return $row->border_id ? $row->border->name : 'All Borders';
@@ -45,7 +49,7 @@ class BillRepository {
                 $action .= '</div>';
                 return $action;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['type','action'])
             ->make(true);
     }
 

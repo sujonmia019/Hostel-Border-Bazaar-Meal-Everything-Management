@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Hostel\Admin\HomeController;
 use App\Http\Controllers\Hostel\Border\MealController;
 use App\Http\Controllers\Hostel\Border\BazaarController;
 

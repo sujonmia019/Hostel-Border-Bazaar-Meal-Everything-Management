@@ -43,7 +43,7 @@ class UserRepository implements UserInterface {
             })
             ->addColumn('action', function($row){
                 $action = '<div class="d-flex align-items-center justify-content-end">';
-                $action .= '<a href="'.route('app.hostel-admin.users.edit', $row->id).'" class="btn-style btn-style-edit me-1"><i class="fa fa-edit"></i></a>';
+                $action .= '<a href="'.route('app.hostel-admin.borders.edit', $row->id).'" class="btn-style btn-style-edit me-1"><i class="fa fa-edit"></i></a>';
 
                 $action .= '<button type="button" class="btn-style btn-style-danger delete_data" data-id="' . $row->id . '" data-name="' . $row->name . '"><i class="fa fa-trash"></i></button>';
                 $action .= '</div>';

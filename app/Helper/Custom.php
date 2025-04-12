@@ -21,6 +21,11 @@ define('TYPE',[
     'user' => 'For Spacific Border',
 ]);
 
+define('TYPE_LABEL',[
+    'all' => '<span class="rounded-0 fw-normal badge bg-primary">For All Border</span>',
+    'user' => '<span class="rounded-0 fw-normal badge bg-danger">For Spacific Border</span>',
+]);
+
 define('GENDER',[
     1 => 'Male',
     2 => 'Female',

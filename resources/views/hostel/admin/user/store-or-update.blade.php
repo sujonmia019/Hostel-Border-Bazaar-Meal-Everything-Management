@@ -43,7 +43,7 @@
             var formData = new FormData(form);
 
             $.ajax({
-                url: "{{ route('app.hostel-admin.users.store-or-update') }}",
+                url: "{{ route('app.hostel-admin.borders.store-or-update') }}",
                 type: "POST",
                 data: formData,
                 dataType: "JSON",
@@ -69,7 +69,7 @@
                         notification(data.status, data.message);
                         if (data.status == 'success') {
                             setInterval(() => {
-                                window.location.href = "{{ route('app.hostel-admin.users.index') }}";
+                                window.location.href = "{{ route('app.hostel-admin.borders.index') }}";
                             }, 600);
                         }
                     }
