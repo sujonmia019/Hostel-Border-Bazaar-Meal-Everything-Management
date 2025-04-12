@@ -8,7 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use App\Services\Hostel_Admin\UserService;
-        
+
 class UserController extends Controller
 {
     use ResponseMessage;

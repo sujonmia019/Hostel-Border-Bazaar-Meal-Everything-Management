@@ -55,7 +55,7 @@ class UserRepository implements UserInterface {
     }
 
     public function userUpdateOrCreate($request){
-        $collection = collect($request->validated())->except('password');
+        $collection = collect($request->validated());
         $role_id    = Constants::BORDER_ROLE;
         $hostel_id  = auth()->user()->hostel_id;
         $username   = auth()->user()->username;
