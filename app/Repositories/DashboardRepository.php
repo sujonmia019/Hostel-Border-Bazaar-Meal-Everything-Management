@@ -17,7 +17,7 @@ class DashboardRepository implements DashboardInterface {
 
         return $this->hostelSuperDashboardData();
     }
-
+    
     public function borderDashboardData(){
         $authUser = auth()->user();
         $data['bazaarExpense'] = DB::table('hostel_bazaars')->whereMonth('date',Carbon::now())

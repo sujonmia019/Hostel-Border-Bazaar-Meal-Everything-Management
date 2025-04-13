@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <div class="row mt-3">
+    <div class="row my-3">
         <div class="col-md-4 col-sm-6 col-12">
             <div class="card rounded-0">
                 <div class="card-header bg-white">
@@ -137,6 +137,43 @@
                                     <td></td>
                                 </tr>
                             </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info rounded-0 border-0">
+                    <h6 class="mb-0 card-title text-light">Meal Cost Reports:</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive scrollable-table">
+                        <table class="table table-sm table-bordered mb-0 table-hover">
+                            <tbody>
+                                <tr>
+                                    <td><strong>In-Total Meal:</strong></td>
+                                    <td>50</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>In-Total Bazaar:</strong></td>
+                                    <td>500 tk</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Meal Per Cost:</strong> (500/50) = </td>
+                                    <td>55.00 tk</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total Meal:</strong></td>
+                                    <td>15</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Meal Cost:</strong> (55.00*15)</td>
+                                    <td>825 tk</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
