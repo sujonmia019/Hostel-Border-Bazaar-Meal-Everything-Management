@@ -7,6 +7,10 @@
         max-height: 302px;
         overflow-y: auto;
     }
+    .card {
+        height: 302px;
+        max-height: 302px;
+    }
 </style>
 @endpush
 

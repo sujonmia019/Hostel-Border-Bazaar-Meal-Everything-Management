@@ -1,10 +1,8 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header bg-info rounded-0 border-0">
-                    <h6 class="mb-0 card-title text-light">Count of {{ date('F y') }} Reports:</h6>
-                </div>
+            <div class="bg-info rounded-0 border-0 py-2 px-2 shadow-sm">
+                <h6 class="mb-0 card-title text-light">Count of {{ date('F y') }} Reports:</h6>
             </div>
         </div>
     </div>
@@ -145,9 +143,9 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-info rounded-0 border-0">
-                    <h6 class="mb-0 card-title text-light">Meal Cost Reports:</h6>
+            <div class="card rounded-0">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0 card-title">Meal Cost Reports:</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive scrollable-table">
